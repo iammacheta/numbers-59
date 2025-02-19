@@ -118,9 +118,9 @@
         let currentNumber = null;
 
         function generateRandomNumber() {
+            hideHint(); // Скрываем подсказку
             currentNumber = Math.floor(Math.random() * 60);
             document.getElementById('number').textContent = currentNumber;
-            hideHint(); // Скрыть подсказку при новом числе
         }
 
         function showHint() {
@@ -134,9 +134,11 @@
 
         function hideHint() {
             let hintElement = document.getElementById('hint');
+            hintElement.textContent = ""; // Очищаем текст
             hintElement.style.opacity = "0";
             hintElement.style.visibility = "hidden";
         }
+
     </script>
 
 </body>
