@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Случайное число 0-59</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #number {
+            font-size: 120px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            background-color: #00408d;
+        }
+
+        @media (max-width: 600px) {
+            #number {
+                font-size: 80px;
+            }
+
+            button {
+                font-size: 20px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="number">—</div>
+    <button onclick="generateRandomNumber()">Сгенерировать</button>
+
+    <script>
+        function generateRandomNumber() {
+            let randomNumber = Math.floor(Math.random() * 60);
+            document.getElementById('number').textContent = randomNumber;
+        }
+    </script>
+
+</body>
+
+</html>
