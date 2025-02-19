@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Случайное число 0-59</title>
+    <title>Случайное число</title>
     <style>
         * {
             margin: 0;
@@ -27,10 +27,10 @@
             font-size: 240px;
             font-weight: bold;
             color: #333;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        button {
+        .btn {
             padding: 15px 30px;
             font-size: 22px;
             font-weight: bold;
@@ -40,14 +40,27 @@
             border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin: 10px;
         }
 
-        button:hover {
+        .btn:hover {
             background-color: #0056b3;
         }
 
-        button:active {
+        .btn:active {
             background-color: #00408d;
+        }
+
+        #hint {
+            font-size: 28px;
+            font-weight: bold;
+            color: #555;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            visibility: hidden;
+            height: 30px;
+            /* Фиксированная высота для предотвращения сдвига */
         }
 
         @media (max-width: 600px) {
@@ -55,9 +68,14 @@
                 font-size: 160px;
             }
 
-            button {
+            .btn {
                 font-size: 20px;
                 padding: 12px 25px;
+            }
+
+            #hint {
+                font-size: 24px;
+                height: 25px;
             }
         }
     </style>
@@ -66,12 +84,41 @@
 <body>
 
     <div id="number">—</div>
-    <button onclick="generateRandomNumber()">Сгенерировать</button>
+    <button class="btn" onclick="generateRandomNumber()">Сгенерировать</button>
+    <button class="btn" onclick="showHint()">Подсказка</button>
+    <div id="hint"></div>
 
     <script>
+        const numbersInPortuguese = [
+            "zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete", "oito", "nove",
+            "dez", "onze", "doze", "treze", "catorze", "quinze", "dezasseis", "dezassete", "dezoito", "dezanove",
+            "vinte", "vinte e um", "vinte e dois", "vinte e três", "vinte e quatro", "vinte e cinco", "vinte e seis", "vinte e sete", "vinte e oito", "vinte e nove",
+            "trinta", "trinta e um", "trinta e dois", "trinta и três", "trinta e quatro", "trinta e cinco", "trinta e seis", "trinta e sete", "trinta e oito", "trinta e nove",
+            "quarenta", "quarenta e um", "quarenta e dois", "quarenta e três", "quarenta e quatro", "quarenta e cinco", "quarenta e seis", "quarenta e sete", "quarenta e oito", "quarenta e nove",
+            "cinquenta", "cinquenta e um", "cinquenta e dois", "cinquenta e três", "cinquenta e quatro", "cinquenta e cinco", "cinquenta e шесть", "cinquenta e семь", "cinquenta e восемь", "cinquenta e девять"
+        ];
+
+        let currentNumber = null;
+
         function generateRandomNumber() {
-            let randomNumber = Math.floor(Math.random() * 60);
-            document.getElementById('number').textContent = randomNumber;
+            currentNumber = Math.floor(Math.random() * 60);
+            document.getElementById('number').textContent = currentNumber;
+            hideHint(); // Скрыть подсказку при новом числе
+        }
+
+        function showHint() {
+            if (currentNumber !== null) {
+                let hintElement = document.getElementById('hint');
+                hintElement.textContent = numbersInPortuguese[currentNumber];
+                hintElement.style.opacity = "1";
+                hintElement.style.visibility = "visible";
+            }
+        }
+
+        function hideHint() {
+            let hintElement = document.getElementById('hint');
+            hintElement.style.opacity = "0";
+            hintElement.style.visibility = "hidden";
         }
     </script>
 
